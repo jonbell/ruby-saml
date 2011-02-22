@@ -6,7 +6,7 @@ require "cgi"
 module Onelogin::Saml
   class Authrequest
     def create(settings, params = {})
-      uuid = UUID.new.generate
+      @uuid = UUID.new.generate
       time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
 
       request =
@@ -29,5 +29,9 @@ module Onelogin::Saml
       settings.idp_sso_target_url + request_params
     end
 
+  end
+
+  def uuid
+    @uuid
   end
 end
